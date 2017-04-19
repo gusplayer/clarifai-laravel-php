@@ -194,7 +194,7 @@ class RequestHandler
     {
         $options = [
             'headers' => [
-                'Authorization' => 'Bearer ezPQPKIp2yJklcf2yxz27emwfghDBZ',
+                'Authorization' => $this->getAuthToken(),
             ],
         ];
 
