@@ -18,9 +18,8 @@ Route::get('/', function () {
 //recibir imagen que queremos identificar desde la app
 //se envia la imagen a clarifai y nos devuelve los conceptos de la imagen
 Route::get('prueba', 'ClariController@enviarImagenClarifai');
-
 //
-Route::get('prueba2', 'ClariController@recibirConcepto');
+Route::post('recognitionimage', 'ClariController@recibirConcepto');
 
 Route::post('pruebapp', 'ClariController@recibirImagen');
 

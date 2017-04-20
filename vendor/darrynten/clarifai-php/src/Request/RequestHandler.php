@@ -116,6 +116,7 @@ class RequestHandler
      */
     public function handleRequest( $method, $uri = NULL, array $options = [], array $parameters = [])
     {
+
         // Are we going a GET or a POST?
         if (!empty($parameters)) {
             if ($method === 'GET') {
