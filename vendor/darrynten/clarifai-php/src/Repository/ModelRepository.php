@@ -30,7 +30,7 @@ class ModelRepository extends BaseRepository
      * The General model contains a wide range of tags across many different topics. In most cases,
      * tags returned from the general model will sufficiently recognize what's inside your image.
      */
-    const GENERAL = 'ledls';
+    const GENERAL = 'modelo';
 
     /**
      * Model id of the Food Clarifai model
