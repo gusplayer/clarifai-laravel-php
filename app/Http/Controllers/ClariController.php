@@ -46,8 +46,6 @@ class ClariController extends Controller
         $conceptoClarifai = $data->outputs[0]->data->concepts[0]->name;
         $valorClarifai = $data->outputs[0]->data->concepts[0]->value;
 
-        $conceptoClarifai = 'led';
-
         //comparamos si existe un concepto claro en la imagen
         if($valorClarifai>0.2)
         {
