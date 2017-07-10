@@ -47,7 +47,7 @@ class ClariController extends Controller
         $valorClarifai = $data->outputs[0]->data->concepts[0]->value;
 
         //comparamos si existe un concepto claro en la imagen
-        if($valorClarifai>0.2)
+        if($valorClarifai>0.4)
         {
               // se tiene un puntaje mayor al 50& significa que se encuentra el concepto
               //buscamos en la base de datos si el concepto tiene un contenido
@@ -58,22 +58,36 @@ class ClariController extends Controller
               //Verificamos si nos arroja algun resultado
               if($conceptoDB)
               {
-                return \Response::json(['tipo_contenido' => $conceptoDB->tipo_contenido,'contenido'=> $conceptoDB->contenido], 200);
+                return \Response::json([
+                  'tipo_contenido' => $conceptoDB->tipo_contenido,
+                  'contenido'=> $conceptoDB->contenido,
+                  'valor'=> $valorClarifai],
+                  200);
               }
               //no se encontro coincidencia de conceptos en la DB
               else {
-                return \Response::json(['fallido' => 'No se encontro contenido para esta imagen'], 200);
+                return \Response::json([
+                  'contenido' => 'No se encontro contenido para esta imagen',
+                  'tipo_contenido' => '0',
+                  'valor'=>$valorClarifai
+                  ], 200);
               }
         }
         //el puntaje es muy bajo, no se busca en la base de datos y se pide tomar nueva foto
         elseif($valorClarifai>0.09)
         {
-        return \Response::json(['contenido' => 'La imagen no es suficientemente clara para analizarla ¿Podrías tomar la foto nuevamente?'], 200);
+        return \Response::json([
+        'contenido' => 'La imagen no es suficientemente clara para analizarla ¿Podrías tomar la foto nuevamente?',
+        'tipo_contenido'=> '0',
+        'valor'=> $valorClarifai], 200);
         }
         //no se encuentra o es demasiado bajo el puntaje
         else
         {
-        return \Response::json(['contenido' => 'No se encontro contenido para esta imagen '], 200);
+        return \Response::json([
+        'contenido' => 'No se encontro contenido para esta imagen ',
+        'tipo_contenido'=> '0',
+        'valor'=> $valorClarifai], 200);
         }
     }
 
