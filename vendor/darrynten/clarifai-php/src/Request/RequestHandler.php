@@ -99,6 +99,7 @@ class RequestHandler
         $this->clientSecret = $clientSecret;
         $this->tokenExpireTime = new \DateTime();
         $this->client = new Client();
+        $this->APIKeys = "e9784c8f96fa4062b59eb8d3c6978304";
     }
 
     /**
@@ -195,7 +196,7 @@ class RequestHandler
     {
         $options = [
             'headers' => [
-                'Authorization' => $this->getAuthToken(),
+                'Authorization' => "Key e9784c8f96fa4062b59eb8d3c6978304",
             ],
         ];
 
